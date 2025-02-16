@@ -1,0 +1,89 @@
+<doctype html>
+    <title>Retalhistas</title>
+    <body style= "padding:20px">
+        <style>
+        
+            #menu {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            background-color: whitesmoke;
+            }
+            h1 {
+            font-family: Arial, Helvetica, sans-serif;
+            color:black;
+            }
+            button {
+            background-color: #0a97c2;
+            border: none;
+            color: white;
+            padding: 10px;
+            margin-bottom: 20px;
+            margin-right: 1em;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            }
+            button:hover{
+                background-color: #044255;
+            }
+            #tabela{
+                overflow:scroll;
+                height: 60%;
+                padding-bottom: 2rem;
+            }
+            #menu td, #menu th {
+            border: 1px solid #ddd;
+            padding: 8px;
+            }
+            
+            #menu tr:nth-child(even){background-color: #f2f2f2;}
+    
+            #menu tr:hover {background-color: #ddd;}
+    
+            #menu th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: rgb(4, 142, 184);
+            color: white;
+            }
+    
+            a{
+                padding: 10px;
+                border-radius: 5px;
+                background-color: black;
+                color:white;
+                text-decoration: none;
+    
+            }
+        </style>
+        
+        <h1>Menu Categorias</h1>
+        <a href="categoria/remover">Remover categoria</a> <a href="categoria/inserir">Inserir categoria</a> 
+        <a href="categoria/listar">Listar categorias</a> <a href="menu">Menu</a>
+
+        {% if cursor %}
+        <table border="2px">
+            <thead>
+                <tr>
+                    <th>Nome da Categoria</th>
+                </tr>
+            <thead>
+            <tbody>
+                {% for record in cursor %}
+                    <tr>
+                        <td>{{ record[0] }}</th>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+
+    </body>
+    </doctype>
+    <script>
+        function goBack() {
+          window.history.back();
+        }
+    </script>

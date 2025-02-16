@@ -1,0 +1,120 @@
+<doctype html>
+<title>IVM</title>
+<body style= "padding:20px">
+    <style>
+       
+        #menu {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        background-color: rgb(193, 183, 183);
+        }
+        h1 {
+        font-family: Arial, Helvetica, sans-serif;
+        color:black
+        }
+        button {
+        background-color: #0a97c2;
+        border: none;
+        color: white;
+        padding: 10px;
+        margin-bottom: 20px;
+        margin-right: 1em;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        }
+        button:hover{
+            background-color: #044255;
+        }
+        #tabela{
+            overflow:scroll;
+            height: 60%;
+            padding-bottom: 2rem;
+        }
+        #menu td, #menu th {
+        border: 1px solid #ddd;
+        padding: 8px;
+        }
+        
+        #menu tr:nth-child(even){background-color: #f2f2f2;}
+
+        #menu tr:hover {background-color: #ddd;}
+
+        #menu th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: rgb(4, 142, 184);
+        color: white;
+        }
+    </style>
+
+</style>
+        
+<div>
+    {% if test %}
+    <h1>Por favor insira os dados da IVM</h1>
+    <a href="menu">Menu</a>
+    <form action="./ivm" method="post">
+        <label>Número de série</label>
+        <input type="text" name="num_serie"/>
+        
+        <label>Fabricante</label>
+        <input type="text" name="fabricante"/>
+
+        <input type="submit"  name = "Listar" value="Listar"/>
+
+        {% if cursor %}
+        <table border="2px">
+            <thead>
+                <tr>
+                    <th>Número de Série</th>
+                    <th>Fabricante</th>
+                </tr>
+            <thead>
+            <tbody>
+                {% for record in cursor %}
+                    <tr>
+                        <td>{{ record[0] }}</th>
+                            <td>{{ record[1] }}</th>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+
+    </form>
+    {% endif %}
+    
+    {% if cursor %}
+    <table border="2px">
+        <thead>
+            <tr>
+                <th>EAN</th>
+                <th>Nro</th>
+                <th>IVM (numero de serie)</th>
+                <th>Fabricante</th>
+                <th>Instante</th>
+                <th>Unidades Repostas</th>
+                <th>Tin</th>
+            </tr>
+        <thead>
+        <tbody>
+            {% for record in cursor %}
+                <tr>
+                    <td>{{ record[0] }}</th>
+                        <td>{{ record[1] }}</th>    
+                        <td>{{ record[2] }}</th>
+                            <td>{{ record[3] }}</th>
+                                <td>{{ record[4] }}</th>
+                                    <td>{{ record[5] }}</th>
+                                        <td>{{ record[6] }}</th>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</div>
+</body>
+</html>
